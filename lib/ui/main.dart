@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nytapp/di/DependencyService.dart';
 import 'package:nytapp/ui/screens/ArticlesScreen.dart';
 import 'package:nytapp/utils/Strings.dart';
 import 'package:nytapp/viewmodels/ArticlesViewModel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  setupDependencies();
   runApp(MyApp());
 }
 

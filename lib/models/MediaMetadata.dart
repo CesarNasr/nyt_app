@@ -15,11 +15,11 @@ class MediaMetadata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['format'] = this.format;
-    data['height'] = this.height;
-    data['width'] = this.width;
+    final data =  <String, dynamic>{};
+    data['url'] = url;
+    data['format'] = format;
+    data['height'] = height;
+    data['width'] = width;
     return data;
   }
 }

@@ -14,7 +14,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
   CustomSearchDelegate(BuildContext context) {
     var articlesProvider = Provider.of<ArticlesViewModel>(context, listen: false); // fetching list to search from the provider class (or viewmodel)
-    this._list = articlesProvider.apiEntry.results;
+    _list = articlesProvider.apiEntry.results;
   }
 
   @override
@@ -23,7 +23,7 @@ class CustomSearchDelegate extends SearchDelegate {
       IconButton(
         icon: Icon(Icons.close),
         onPressed: () {
-          query = "";
+          query = '';
         },
       )
     ];
@@ -50,7 +50,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<Results> suggestionList = [];
+    var suggestionList = <Results>[];
 
     query.isEmpty // filtering the list based on the query entered by the user in the search box
         ? suggestionList = _list

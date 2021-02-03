@@ -24,23 +24,23 @@ class Media {
     copyright = json['copyright'];
     approvedForSyndication = json['approved_for_syndication'];
     if (json['media-metadata'] != null) {
-      mediaMetadata = new List<MediaMetadata>();
+      mediaMetadata = <MediaMetadata>[];
       json['media-metadata'].forEach((v) {
-        mediaMetadata.add(new MediaMetadata.fromJson(v));
+        mediaMetadata.add(MediaMetadata.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['subtype'] = this.subtype;
-    data['caption'] = this.caption;
-    data['copyright'] = this.copyright;
-    data['approved_for_syndication'] = this.approvedForSyndication;
-    if (this.mediaMetadata != null) {
+    final data = <String, dynamic>{};
+    data['type'] = type;
+    data['subtype'] = subtype;
+    data['caption'] = caption;
+    data['copyright'] = copyright;
+    data['approved_for_syndication'] = approvedForSyndication;
+    if (mediaMetadata != null) {
       data['media-metadata'] =
-          this.mediaMetadata.map((v) => v.toJson()).toList();
+          mediaMetadata.map((v) => v.toJson()).toList();
     }
     return data;
   }

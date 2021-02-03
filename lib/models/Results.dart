@@ -71,40 +71,40 @@ class Results {
     perFacet = json['per_facet'].cast<String>();
     geoFacet = json['geo_facet'].cast<String>();
     if (json['media'] != null) {
-      media = new List<Media>();
+      media = <Media>[];
       json['media'].forEach((v) {
-        media.add(new Media.fromJson(v));
+        media.add(Media.fromJson(v));
       });
     }
     etaId = json['eta_id'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uri'] = this.uri;
-    data['url'] = this.url;
-    data['id'] = this.id;
-    data['asset_id'] = this.assetId;
-    data['source'] = this.source;
-    data['published_date'] = this.publishedDate;
-    data['updated'] = this.updated;
-    data['section'] = this.section;
-    data['subsection'] = this.subsection;
-    data['nytdsection'] = this.nytdsection;
-    data['adx_keywords'] = this.adxKeywords;
-    data['column'] = this.column;
-    data['byline'] = this.byline;
-    data['type'] = this.type;
-    data['title'] = this.title;
-    data['abstract'] = this.abstract;
-    data['des_facet'] = this.desFacet;
-    data['org_facet'] = this.orgFacet;
-    data['per_facet'] = this.perFacet;
-    data['geo_facet'] = this.geoFacet;
-    if (this.media != null) {
-      data['media'] = this.media.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{};
+    data['uri'] = uri;
+    data['url'] = url;
+    data['id'] = id;
+    data['asset_id'] = assetId;
+    data['source'] = source;
+    data['published_date'] = publishedDate;
+    data['updated'] = updated;
+    data['section'] = section;
+    data['subsection'] = subsection;
+    data['nytdsection'] = nytdsection;
+    data['adx_keywords'] = adxKeywords;
+    data['column'] = column;
+    data['byline'] = byline;
+    data['type'] = type;
+    data['title'] = title;
+    data['abstract'] = abstract;
+    data['des_facet'] = desFacet;
+    data['org_facet'] = orgFacet;
+    data['per_facet'] = perFacet;
+    data['geo_facet'] = geoFacet;
+    if (media != null) {
+      data['media'] = media.map((v) => v.toJson()).toList();
     }
-    data['eta_id'] = this.etaId;
+    data['eta_id'] = etaId;
     return data;
   }
 }

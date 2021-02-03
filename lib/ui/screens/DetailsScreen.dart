@@ -14,19 +14,15 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView  (
+        child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            child:
-              _detailsOutlineWidget(),
-
+            child: _detailsOutlineWidget(),
           ),
         ),
       ),
     );
   }
-
-
 
 // simple column widget to display data
   Widget _detailsOutlineWidget() {
@@ -43,7 +39,7 @@ class DetailsScreen extends StatelessWidget {
         ),
         ListTile(
           title: Text(Strings.publishedDate),
-          subtitle: Text("${Utils().getFormattedDate(result.publishedDate)}"),
+          subtitle: Text('${Utils().getFormattedDate(result.publishedDate)}'),
         ),
         InkWell(
           onTap: () {
@@ -51,21 +47,21 @@ class DetailsScreen extends StatelessWidget {
           },
           child: ListTile(
             title: Text(
-                Strings.articleLink,
+              Strings.articleLink,
               style: TextStyle(color: Colors.blue),
             ),
-            trailing: IconButton(
-              icon: Icon(Icons.link),
-            ),
-
+            trailing: Icon(Icons.link),
           ),
         ),
-        Center(child: Image.network(result.media[0].mediaMetadata[result.media[0].mediaMetadata.length - 1]?.url)),
+        Center(
+            child: Image.network(result.media[0]
+                .mediaMetadata[result.media[0].mediaMetadata.length - 1]?.url)),
       ],
     );
   }
 
-  _launchURL(String url) async { // web launcher
+  void _launchURL(String url) async {
+    // web launcher
     // this function uses url_launcher to start url link
     if (await canLaunch(url)) {
       await launch(url);

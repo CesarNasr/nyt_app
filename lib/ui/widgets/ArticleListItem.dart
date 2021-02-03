@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nytapp/models/Results.dart';
-import 'package:nytapp/utils/Utils.dart';
 
 // List item view with an onTap call back -- used ListTile widget
 class ArticleListItem extends StatefulWidget {
@@ -40,7 +39,7 @@ class _ArticleListItemState extends State<ArticleListItem> {
                           size: 15,
                         ),
                       ),
-                      Text("${widget.result.publishedDate}"),
+                      Text('${widget.result.publishedDate}'),
                     ],
                   ),
                 ],
@@ -49,9 +48,7 @@ class _ArticleListItemState extends State<ArticleListItem> {
                 backgroundImage:
                     NetworkImage(widget.result.media[0].mediaMetadata[0].url),
               ),
-              trailing: IconButton(
-                icon: Icon(Icons.arrow_forward_ios),
-              ),
+              trailing: Icon(Icons.arrow_forward_ios),
             ),
           ],
         ),
