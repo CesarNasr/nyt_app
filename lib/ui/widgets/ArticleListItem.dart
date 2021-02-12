@@ -27,11 +27,9 @@ class _ArticleListItemState extends State<ArticleListItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('${widget.result.byline}'),
-
                   Row(
                     children: [
                       Spacer(),
-
                       Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Icon(
@@ -44,11 +42,16 @@ class _ArticleListItemState extends State<ArticleListItem> {
                   ),
                 ],
               ),
-              leading: CircleAvatar(
-                backgroundImage:
-                    NetworkImage(widget.result.media[0].mediaMetadata[0].url),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios),
+              leading: widget.result.media.isNotEmpty &&
+                      widget.result?.media[0].mediaMetadata.isNotEmpty
+                  ? CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          widget.result?.media[0]?.mediaMetadata[0]?.url),
+                    )
+                  : CircleAvatar(
+                      backgroundColor: Colors.blue,
+                    ),
+              trailing: Icon(Icons.arrow_forward_ios,key: Key('forwardArrow'),),
             ),
           ],
         ),

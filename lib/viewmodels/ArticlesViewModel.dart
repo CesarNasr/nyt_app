@@ -5,8 +5,9 @@ import 'package:nytapp/models/Results.dart';
 import 'package:nytapp/network/ApiExceptions.dart';
 import 'package:nytapp/repositories/ArticlesRepository.dart';
 
-class ArticlesViewModel with ChangeNotifier { // provider class related to the UI screen, plays the role of the viewmodel
-//  ArticlesRepository _articlesRepository = ArticlesRepository(); // use DI
+class ArticlesViewModel with ChangeNotifier {
+  // provider class related to the UI screen, plays the role of the viewmodel
+
   var repositoryService = dependencies<ArticlesRepository>();
 
   ApiEntry _apiEntry;
@@ -26,10 +27,9 @@ class ArticlesViewModel with ChangeNotifier { // provider class related to the U
 
   Future<void> getApiResults() async {
     ApiEntry apiResult = await repositoryService.fetchArticlesResponse();
-     if (apiResult.status == 'OK') {
+    if (apiResult.status == 'OK') {
       _apiEntry = apiResult;
       notifyListeners();
-
     } else {
       throw UnauthorisedException('Authorization Error');
     }

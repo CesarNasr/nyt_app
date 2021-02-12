@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:nytapp/models/Results.dart';
 
 class Utils {
   String getFormattedDate(String dateString) {
@@ -15,5 +16,17 @@ class Utils {
       context,
       MaterialPageRoute(builder: (context) => widget),
     );
+  }
+
+  List<Results> filterList(String query, List<Results> originalList) {
+    var suggestionList = <Results>[];
+
+    query
+            .isEmpty // filtering the list based on the query entered by the user in the search box
+        ? suggestionList = originalList
+        : suggestionList.addAll(originalList.where((element) =>
+            element.title.toLowerCase().contains(query.toLowerCase())));
+
+    return suggestionList;
   }
 }

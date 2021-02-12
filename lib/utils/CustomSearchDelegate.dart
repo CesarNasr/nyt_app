@@ -3,7 +3,7 @@ import 'package:nytapp/models/Results.dart';
 import 'package:nytapp/ui/screens/DetailsScreen.dart';
 import 'package:nytapp/ui/widgets/ArticleListItem.dart';
 import 'package:nytapp/viewmodels/ArticlesViewModel.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' if (dart.library.io) 'package:provider/provider.dart';
 
 import 'Utils.dart';
 
@@ -13,7 +13,9 @@ class CustomSearchDelegate extends SearchDelegate {
   List<Results> _list = [];
 
   CustomSearchDelegate(BuildContext context) {
-    var articlesProvider = Provider.of<ArticlesViewModel>(context, listen: false); // fetching list to search from the provider class (or viewmodel)
+    var articlesProvider = Provider.of<ArticlesViewModel>(context,
+        listen:
+            false); // fetching list to search from the provider class (or viewmodel)
     _list = articlesProvider.apiEntry.results;
   }
 
@@ -50,19 +52,13 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    var suggestionList = <Results>[];
-
-    query.isEmpty // filtering the list based on the query entered by the user in the search box
-        ? suggestionList = _list
-        : suggestionList
-        .addAll(_list.where((element) => element.title.toLowerCase().contains(query.toLowerCase())));
+    var suggestionList = Utils().filterList(query, _list);
 
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (_, i) {
         return ArticleListItem(suggestionList[i], () {
-          Utils().goToScreen(
-              context, DetailsScreen(suggestionList[i]));
+          Utils().goToScreen(context, DetailsScreen(suggestionList[i]));
         });
       },
     );

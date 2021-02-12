@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nytapp/models/Results.dart';
 import 'package:nytapp/utils/Strings.dart';
 import 'package:nytapp/utils/Utils.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart' if (dart.library.io) 'package:url_launcher/url_launcher.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Results result;
@@ -54,8 +54,15 @@ class DetailsScreen extends StatelessWidget {
           ),
         ),
         Center(
-            child: Image.network(result.media[0]
-                .mediaMetadata[result.media[0].mediaMetadata.length - 1]?.url)),
+            child: result.media.isNotEmpty &&
+                    result?.media[0].mediaMetadata.isNotEmpty
+                ? Image.network(result
+                    .media[0]
+                    .mediaMetadata[result.media[0].mediaMetadata.length - 1]
+                    ?.url)
+                : Container(
+                    height: 0,
+                  )),
       ],
     );
   }

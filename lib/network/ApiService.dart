@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' as http;
-
+import 'package:http/http.dart' as http if (dart.library.io) '';
 import 'ApiExceptions.dart';
 
 class ApiService {
 
   // get method to fetch api data
   Future<dynamic> getRequest(String url) async {
+
     var responseJson;
     try {
       final response = await http.get(url).timeout(const Duration(seconds: 15));
@@ -39,7 +39,7 @@ class ApiService {
       case 500:
       default:
         throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+            'Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
     }
   }
 }

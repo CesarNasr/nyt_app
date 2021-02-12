@@ -6,7 +6,7 @@ import 'package:nytapp/ui/widgets/ErrorWidgetView.dart';
 import 'package:nytapp/utils/CustomSearchDelegate.dart';
 import 'package:nytapp/utils/Utils.dart';
 import 'package:nytapp/viewmodels/ArticlesViewModel.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' if (dart.library.io) 'package:provider/provider.dart';
 
 // screen that shows list retrieved from api
 
